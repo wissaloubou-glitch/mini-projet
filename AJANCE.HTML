@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelMemories | Explorer Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #ff7e5f;
+            --soft-bg: #fdf2f0;
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: #fff; color: var(--primary); overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; position: fixed; width: 100%; top: 0;
+            background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo { font-weight: 800; font-size: 1.5rem; cursor: pointer; }
+        .logo span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 25px; }
+        nav ul li a { 
+            text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.9rem; 
+            transition: var(--transition);
+        }
+        nav ul li a:hover { color: var(--accent); }
+
+        .btn-nav { 
+            background: var(--primary); color: white; border: none; 
+            padding: 10px 25px; border-radius: 50px; cursor: pointer; 
+            font-weight: 600; transition: var(--transition);
+        }
+        .btn-nav:hover { transform: scale(1.05); background: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            display: grid; grid-template-columns: 1.2fr 1fr;
+            padding: 160px 8% 100px; align-items: center; gap: 50px;
+            min-height: 100vh; background: radial-gradient(circle at 10% 20%, #fff9f5 0%, #ffffff 100%);
+        }
+        .hero-text h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.1; margin-bottom: 25px; font-weight: 800; }
+        .hero-text p { color: #64748b; font-size: 1.1rem; margin-bottom: 35px; max-width: 500px; }
+        
+        .btn-main { 
+            background: var(--accent); color: white; border: none; 
+            padding: 18px 40px; border-radius: 50px; font-weight: 700; 
+            cursor: pointer; transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(255,126,95,0.3);
+        }
+        .btn-main:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,126,95,0.4); }
+
+        .hero-img-box { position: relative; display: flex; justify-content: center; }
+        .main-circle {
+            width: 450px; height: 450px; border-radius: 50%; overflow: hidden;
+            border: 15px solid white; box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+        .main-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Sections --- */
+        section { padding: 100px 8%; }
+        .sec-title { text-align: center; margin-bottom: 60px; }
+        .sec-title h2 { font-size: 2.5rem; font-weight: 800; }
+        .sec-title span { color: var(--accent); }
+
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .card { 
+            background: white; border-radius: 30px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: var(--transition);
+            border: 1px solid #f1f5f9; position: relative;
+        }
+        .card:hover { transform: translateY(-10px); border-color: var(--accent); }
+        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .card-body { padding: 25px; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+        .price { font-weight: 800; font-size: 1.2rem; color: var(--accent); }
+        .btn-book { 
+            background: var(--primary); color: white; border: none; 
+            padding: 10px 22px; border-radius: 12px; cursor: pointer; transition: 0.3s;
+            font-weight: 600;
+        }
+        .btn-book:hover { background: var(--accent); }
+
+        /* --- Modals --- */
+        .modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
+            display: none; place-items: center; z-index: 2000; backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 30px; width: 95%; max-width: 450px;
+            position: relative; animation: slideUp 0.4s ease-out;
+        }
+        .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; font-size: 1.5rem; font-weight: 800; }
+        .modal h2 { margin-bottom: 10px; }
+        .modal p { color: #64748b; margin-bottom: 20px; font-size: 0.9rem; }
+        .modal input, .modal select { width: 100%; padding: 15px; margin: 8px 0; border: 1px solid #ddd; border-radius: 12px; outline: none; }
+        .modal input:focus { border-color: var(--accent); }
+
+        /* Animations */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: 1s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Memories<span>Travel.</span></div>
+        <ul id="main-nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#destinations">Destination</a></li>
+            <li><a href="#plans">Pricing</a></li>
+            <li><a href="#blog">Blog</a></li>
+        </ul>
+        <button class="btn-nav" onclick="toggleModal('loginModal')">Sign In</button>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h1>Travel Memories <br> You'll Never Forget</h1>
+            <p>Ready to explore the world? We provide the best destinations with high-quality services for your dream vacation.</p>
+            <div class="hero-btns">
+                <button class="btn-main" onclick="document.getElementById('destinations').scrollIntoView({behavior: 'smooth'})">Find Out More</button>
+            </div>
+        </div>
+        <div class="hero-img-box">
+            <div class="main-circle">
+                <img src="https://i.pinimg.com/1200x/23/22/1e/23221e8fb8efd3ad6f41fb14ff23ba54.jpg" alt="Traveler">
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations" class="reveal">
+        <div class="sec-title">
+            <h2>Popular <span>Destinations</span></h2>
+            <p>Explore the most visited places this year</p>
+        </div>
+        <div class="grid-layout">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600" alt="Paris">
+                <div class="card-body">
+                    <h3>Paris, France</h3>
+                    <p style="font-size: 0.8rem; color: #888;">Eiffel Tower & Romantic Streets</p>
+                    <div class="price-row">
+                        <span class="price">$1,200</span>
+                        <button class="btn-book" onclick="openBooking('Paris, France')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600" alt="Venice">
+                <div class="card-body">
+                    <h3>Venice, Italy</h3>
+                    <p style="font-size: 0.8rem; color: #888;">Gondola Rides & Ancient Bridges</p>
+                    <div class="price-row">
+                        <span class="price">$950</span>
+                        <button class="btn-book" onclick="openBooking('Venice, Italy')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600" alt="Dubai">
+                <div class="card-body">
+                    <h3>Dubai, UAE</h3>
+                    <p style="font-size: 0.8rem; color: #888;">Desert Safari & Luxury Skyscrapers</p>
+                    <div class="price-row">
+                        <span class="price">$1,500</span>
+                        <button class="btn-book" onclick="openBooking('Dubai, UAE')">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" style="background:#fafafa;" class="reveal">
+        <div class="sec-title">
+            <h2>Best <span>Vacation Plan</span></h2>
+            <p>Affordable packages for families and couples</p>
+        </div>
+        <div class="grid-layout">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600" alt="Bali">
+                <div class="card-body">
+                    <h3>Bali, Indonesia</h3>
+                    <p>10 Days Full Package</p>
+                    <div class="price-row">
+                        <span class="price">$2,400</span>
+                        <button class="btn-book" onclick="openBooking('Bali 10-Day Package')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=600" alt="Greece">
+                <div class="card-body">
+                    <h3>Santorini, Greece</h3>
+                    <p>7 Days Summer Special</p>
+                    <div class="price-row">
+                        <span class="price">$1,800</span>
+                        <button class="btn-book" onclick="openBooking('Santorini Summer Special')">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('bookingModal')">&times;</span>
+            <h2>Book Your Trip</h2>
+            <p id="selected-destination">Destination: <span></span></p>
+            <form id="book-form" onsubmit="confirmBooking(event)">
+                <input type="text" id="dest-hidden" readonly style="background: #f1f5f9; font-weight: bold; color: var(--accent);">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone Number (e.g. 06...)" required>
+                <input type="date" required>
+                <button type="submit" class="btn-main" style="width:100%; margin-top:15px;">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="toggleModal('loginModal')">&times;</span>
+            <h2>Welcome Back!</h2>
+            <p>Login to manage your trips</p>
+            <input type="email" placeholder="Email Address">
+            <input type="password" placeholder="Password">
+            <button class="btn-main" style="width:100%; margin-top:20px;" onclick="toggleModal('loginModal')">Login</button>
+        </div>
+    </div>
+
+    <footer style="padding: 50px 8%; text-align: center; background: var(--primary); color: white;">
+        <p>&copy; 2026 Memories Travel Agency. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 1. Smooth Scroll for Navigation
+        document.querySelectorAll('#main-nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 2. Generic Modal Toggle
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            const currentDisplay = window.getComputedStyle(modal).display;
+            modal.style.display = (currentDisplay === 'grid') ? 'none' : 'grid';
+        }
+
+        // 3. Booking Modal Logic
+        function openBooking(placeSmiya) {
+            document.getElementById('dest-hidden').value = "Target: " + placeSmiya;
+            toggleModal('bookingModal');
+        }
+
+        function confirmBooking(e) {
+            e.preventDefault();
+            alert("Perfect! Your request for " + document.getElementById('dest-hidden').value + " has been sent. We will call you soon!");
+            toggleModal('bookingModal');
+            e.target.reset();
+        }
+
+        // 4. Reveal on Scroll Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Run once on start
+    </script>
+</body>
+</html>

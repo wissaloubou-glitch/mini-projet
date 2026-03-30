@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Informations Mercedes-AMG GT</title>
+</head>
+<style>
+     body {
+       background-image:linear-gradient(to right, #0a0202, #b8860b) ;
+       color: rgb(223, 222, 222);
+       font-family: Arial;
+       text-align: center;
+     }
+     img{
+         width: 30%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid #222;
+     }
+     .volkswagen{
+        display:column;
+     }
+     .info-section {
+            text-align: left;
+            padding: 20px;
+            background: #000;
+            border-radius: 15px;
+            border-left: 5px solid #b8860b;
+            margin: 30px;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-header h1 {
+            color: #b8860b;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .price-tag {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .spec-item {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .spec-item b {
+             color: #b8860b;
+         }
+        button{
+            background-color: rgb(155, 155, 15);
+            padding: 10px 60px;
+            border-radius: 10px;
+            border-color: black;
+            border: solid;
+            font-size: 18px;
+            cursor: pointer;
+        }
+</style>
+<body>
+    <div class="volkswagen">
+    <div class="volkswagen1">
+        <img src="https://i.pinimg.com/1200x/8d/76/44/8d7644886f2c60b1e445d3c91904b228.jpg">
+        <img src="https://tse4.mm.bing.net/th/id/OIP.gosb94vlrU0L9gvhoFFoAAHaE8?pid=ImgDet&w=474&h=316&rs=1&o=7&rm=3">
+    </div>    
+    <div class="volkswagen2">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.wlSV2HBrtkFZ-QU8qdvwkwHaE8?rs=1&pid=ImgDetMain&o=7&rm=3">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.03V3rybcmXqbxoqLe1Jj0AHaEK?rs=1&pid=ImgDetMain&o=7&rm=3">
+    </div>
+    <div class="info-section">
+            <div class="info-header">
+                <h1>Mercedes-AMG GT</h1>
+                <div class="price-tag">1200 DH <small>/ Jour</small></div>
+            </div>
+            <div class="specs-list">
+                <div class="spec-item"><b>Moteur:</b> V8 Biturbo</div>
+                <div class="spec-item"><b>Puissance:</b> 530 ch</div>
+                <div class="spec-item"><b>0-100 km/h:</b> 3.8 sec</div>
+                <div class="spec-item"><b>Carburant:</b> Essence (Super)</div>
+                <div class="spec-item"><b>Équipements:</b> Burmester Sound, Échappement Sport</div>
+                <div class="spec-item"><b>Catégorie:</b> Super Sportive</div>
+            </div>
+    </div>
+    <div class="reserver">
+    <a href="reserver.html">
+        <button type="submit">Réserver</button>
+    </a>
+    </div>
+    </div>
+</body>
+</html>

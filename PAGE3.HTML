@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Premium Auto Rent - Luxury Journey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: rgb(35, 32, 32);
+            color: white;
+        }
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 5%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1;
+            border-bottom: 1px solid rgba(155, 155, 15, 0.3);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: rgb(155, 155, 15);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }  
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: rgb(155, 155, 15);
+        }
+
+
+        .first-page {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .bg-zoom {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url(' https://i.pinimg.com/736x/0e/57/d8/0e57d866dd76e532e3b026a80b4bca5e.jpg'); 
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+            animation: zoomEffect 20s infinite alternate linear;
+        }
+
+        @keyframes zoomEffect {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        .overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        .all {
+            text-align: center;
+            z-index: 10;
+            padding: 40px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            max-width: 800px;
+            margin-top:100px;
+        }
+
+        .all h1 {
+            font-size: clamp(30px, 6vw, 60px);
+            font-weight: 800;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInDown 1s ease forwards;
+        }
+
+        .all h2 {
+            color: rgb(155, 155, 15);
+            font-size: clamp(18px, 3vw, 28px);
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.4s;
+        }
+
+        .all p {
+            font-size: 18px;
+            margin-bottom: 30px;
+             opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .button1 {
+            opacity: 0;
+            animation: zoomIn 0.8s ease forwards 1s;
+        }  
+         @keyframes fadeInDown {
+             from {
+                 opacity: 0; 
+                 transform: translateY(-30px);
+             }
+              to {
+                 opacity: 1; 
+                 transform: translateY(0);
+                 }
+            }
+        @keyframes fadeInUp { 
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            } 
+            to { 
+                opacity: 1; 
+                transform: translateY(0);
+             } 
+            }
+        @keyframes zoomIn {
+             from {
+                 opacity: 0;
+                 transform: scale(0.9); 
+                }
+                to {
+                     opacity: 1; 
+                    transform: scale(1);
+                 }
+             }
+
+        .button1 button{
+            padding: 15px 35px;
+            background-color: rgb(155, 155, 15);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button1 button:hover {
+            transform: translateY(-5px);
+            background-color: rgb(180, 180, 20);
+        }
+
+        .second-page {
+            background-color: rgb(35, 32, 32);
+        }
+
+        .images1, .images2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .image-card {
+            background-color: rgb(31, 25, 25);
+            box-shadow: 0px 10px 30px rgba(0,0,0,0.5);
+            border-radius: 30px;
+            padding: 20px;
+            text-align: center;
+            width: 350px;
+            transition: 0.4s;
+        }
+
+        .image-card:hover { 
+            transform: translateY(-10px);
+         }
+
+        .image-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid #222;
+        }
+
+        .image-card h2 { 
+            color:rgb(155, 155, 15) ;
+             margin: 15px;
+              font-size: 20px;
+             }
+
+        .btn-reserve, .btn-info {
+            width: 140px;
+            height: 45px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-reserve { 
+            background-color: rgb(155, 155, 15);
+             border: 1px solid black;
+             }
+        .btn-info { 
+            background: transparent; 
+            color: white;
+             border: 1px solid rgb(155, 155, 15);
+         }
+
+        .third-page {
+            background-color: rgb(36, 30, 30);
+            color: white;
+            padding: 80px 40px;
+        }
+
+        .about-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 50px;
+            max-width: 1200px;
+    
+        }
+
+        .left { 
+            flex:1;
+         }
+        .left h2 { 
+            color: rgb(155, 155, 15);
+             margin-bottom: 10px;
+             }
+        
+        .simple-phone::before {
+            content: "\260E : +212 060000000";
+            font-size: 25px;
+            color: white;
+        }
+        .simple-phone { 
+            text-decoration: none; 
+            display: block;
+             margin: 25px 0; 
+            }
+
+        .CAU button {
+            background-color: rgb(155, 155, 15);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .feature { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column;
+             gap: 20px; 
+            }
+        .box {
+             display: flex; 
+            gap: 15px;
+         }
+        .check { 
+            color: rgb(155, 155, 15); 
+            font-weight: bold; }
+
+        .ready-section {
+            background-color: black;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .footer-stats {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 40px ;
+        }
+
+        .stat-item h3 {
+             color: rgb(155, 155, 15);
+         }
+        .footer-bottom { 
+            
+            border-top: 1px solid #333; 
+            padding-top: 30px; 
+            color: #777; 
+        }
+        .wa-logo {
+             font-size: 40px; 
+            font-weight: bold; 
+             margin-top: 20px;
+            }
+        .image-card p{
+                 font-size: larger;
+                 margin-bottom: 20px;
+            }
+
+      
+    </style>
+</head>
+<body>
+      <header>
+        <a href="#" class="logo">PREMIUM<span>AUTO</span></a>
+        <nav>
+            <ul>
+                <li><a href="#first">Accueil</a></li>
+                <li><a href="#cars-section">Voitures</a></li>
+                <li><a href="#about-section">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <section id="first" class="first-page">
+        <div class="bg-zoom"></div>
+        <div class="overlay"></div>
+        
+        <div class="all">
+            <h1>YOUR JOURNEY STARTS HERE</h1>
+            <h2>Luxury & Performance Car Rentals</h2>
+            <p>Drive elite vehicles for business, travel, or special moments</p>
+            
+            <div class="button1">
+                <a href="#cars-section">
+                    <button>voitures à louer</button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cars-section" class="second-page">
+        <div class="images1">
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/6a/aa/1a/6aaa1a9957fc2a13955a107a0658ef87.jpg">
+                <h2>Volkswagen T-Roc R</h2>
+                <p>prix: 400/Jour</p>
+            </div>
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/44/ea/36/44ea3622ae5bb39e08e5176b69d71e71.jpg">
+                <h2>Skoda Kodiaq</h2> 
+                <p>prix: 400/Jour</p>
+            </div>
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/0e/86/7b/0e867b9abea1f31b1ecace1576a8d44c.jpg">
+                <h2>Peugeot 208</h2> 
+                <p>prix: 300/Jour</p>
+            </div>
+        </div>
+        <div class="images2">
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/8d/76/44/8d7644886f2c60b1e445d3c91904b228.jpg">
+                <h2>Mercedes-AMG GT</h2>
+                <p>prix: 700/Jour</p>
+            </div>
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/fd/1a/12/fd1a1230c1d5bd9d0206d375281bde47.jpg">
+                <h2>Jeep Compass</h2>
+                <p>prix: 350/Jour</p>
+            </div>
+            <div class="image-card">
+                <img src="https://i.pinimg.com/1200x/ef/40/67/ef4067f52d76aa88a5a0d865bfc10b0e.jpg">
+                <h2>Kia Sportage GT-line</h2>
+                <p>prix: 350/Jour</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="third-page">
+        <div class="about-container">
+            <div class="left">
+                <h2>ABOUT US</h2>
+                <h1>Luxury. Performance. Trust.</h1>
+                <p>PREMIUM AUTO RENT - A company created out of passion for the automotive industry.</p>
+                <p>Offering a fleet of premium vehicles to fulfill your dreams.</p>
+                <a href="tel:212600000000" class="simple-phone"></a>
+                <div class="CAU">
+                    <a href="learn.html">
+                        <button>Learn More</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="box">
+                    <span class="check">✔</span>
+                    <div>
+                        <h3>Premium Fleet Only</h3>
+                        <p>We offer only high-end cars</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <span class="check">✔</span>
+                    <div>
+                        <h3>Fully Insured</h3>
+                        <p>Well maintained & insured</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <span class="check">✔</span>
+                    <div>
+                        <h3>Flexible Options</h3>
+                        <p>Choose what suits you best</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about-section" class="ready-section">
+        <h1>Ready to Drive Premium?</h1>
+        <p>Book your luxury car today.</p>
+
+        <div class="footer-stats">
+            <div class="stat-item">
+                <h3>Premium Vehicles</h3>
+                <p>Top quality cars</p></div>
+            <div class="stat-item">
+                <h3>5-Star Reviews</h3>
+                <p>Trusted by customers</p></div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Premium Auto Rent. All Rights Reserved.</p>
+        </div>
+        <div class="wa-logo">WA</div>
+    </section>
+
+    <script>
+       // 1. Kan-hadro m3a ga3 l-cards dial tomobilat
+let cards = document.querySelectorAll(".image-card");
+
+// 2. Kan-creé-iw wahed l-objet fih kola tomobil o smiya dial l-page dialha
+const carPages = {
+    "Volkswagen T-Roc R": "P5.HTML",
+    "Skoda Kodiaq": "P7.HTML",
+    "Peugeot 208": "P6.HTML",
+    "Mercedes-AMG GT": "P3.HTML",
+    "Jeep Compass": "P4.HTML",
+    "Kia Sportage GT-line": "P1.HTML"
+};
+
+cards.forEach(function(item) {
+    // Jebna smiya dial tomobil li f-had l-card
+    let carName = item.querySelector("h2").innerText;
+
+    // Bouton dial Info
+    let infoBtn = document.createElement("button");
+    infoBtn.innerText = "Plus d'informations";
+    infoBtn.classList.add("btn-info");
+    
+    infoBtn.onclick = function() {
+        // Hna kanshoufo smiya dial tomobil o kantsiftoha l-page dialha
+        let targetPage = carPages[carName];
+        if (targetPage) {
+            window.location.href = targetPage;
+        } else {
+            console.log("Page makhdamach l had tomobil");
+        }
+    };
+
+    // Bouton dial Réserver
+    let reserveBtn = document.createElement("button");
+    reserveBtn.innerText = "Réservez";
+    reserveBtn.classList.add("btn-reserve");
+    reserveBtn.onclick = function() {
+        window.location.href = "reserver.html";
+    };
+
+    // Zidna l-boutonnat f-l-card
+    item.appendChild(infoBtn);
+    item.appendChild(reserveBtn);
+});
+    </script>
+</body>
+</html>

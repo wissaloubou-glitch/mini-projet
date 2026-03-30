@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> résérvation</title>
+        <style>
+            body{
+                background-image: url(https://i.pinimg.com/736x/63/26/9a/63269a13dae472470cac615bfa31a2ff.jpg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                justify-self: center;
+                height: 100vh;
+                background-attachment: fixed;
+                
+                
+            }
+            label{
+                font-size: 20px;
+                display:block;
+                margin-top: 15px;
+                margin-bottom:10px;
+
+
+            }
+            input{
+                padding: 5px;
+                width: 100%;
+                border-radius: 5px;
+                display:block;
+                box-sizing: border-box;
+                padding:7px ;
+                
+            }
+            button{
+                font-size: 20px;
+                background-color:rgb(155, 155, 15);
+                padding: 6px;   
+                border-radius: 5px;
+                padding: 6px;
+                margin-top: 20px;
+            }
+            .form{
+                background: rgba(0,0,0,0.5) ;
+                position: fixed;
+                color: white;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                padding:30px;
+                width: 400px;
+                border-radius: 16px;
+                text-align: center;
+                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="form">
+          <form id="myForm">
+            <label for="name">Nom complet</label>    
+            <input type="text"  id="name" name="name">
+           <label>Date début:</label>
+           <input type="date" id="debut" required>
+           <label>Date fin:</label>
+           <input type="date" id="fin" required>
+           <button type="submit">Confirmer</button>
+          </form>
+
+        <script>
+             const form = document.getElementById('myForm');
+
+             form.onsubmit = function(event) {
+               let d1 = document.getElementById('debut').value;
+               let d2 = document.getElementById('fin').value;
+
+             if (d2 < d1) {
+               alert("Erreur: la date est incorrecte");
+               event.preventDefault(); 
+            }
+         };
+         </script>
+        </div>
+    </body>
+</html>

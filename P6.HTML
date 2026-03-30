@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Informations voitures</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<style>
+     body {
+       background-image:linear-gradient(to right, #0a0202, #b8860b) ;
+       color: rgb(223, 222, 222);
+       font-family: Arial;
+       text-align: center;
+     }
+     img{
+         width: 30%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 2px solid #222;
+     }
+     .peugeot{
+        display:column;
+     }
+     .info-section {
+            text-align: left;
+            padding: 20px;
+            background: #000;
+            border-radius: 15px;
+            border-left: 5px solid #b8860b;
+            margin: 30px;
+        }
+
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .info-header h1 {
+            color: #b8860b;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .price-tag {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .specs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .spec-item {
+            background: #1a1a1a;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .spec-item b {
+             color: #b8860b;
+         }
+        button{
+            background-color: rgb(155, 155, 15);
+            padding: 10px 60px;
+            border-radius: 10px;
+            border-color: black;
+            border: solid;
+            font-size: 18px;
+            
+        }
+
+</style>
+<body>
+    <div class=peugeot>
+    <div class="peugeot1">
+        <img src="https://i.pinimg.com/736x/1d/9f/6b/1d9f6b0d197b0ecd74b3221175b43452.jpg">
+        <img src="https://i.pinimg.com/1200x/39/12/9e/39129e6ce8243c8d992f2e4aa4fbdae4.jpg">
+    </div>    
+    <div class="peugeot2">
+        <img src="https://i.pinimg.com/474x/cd/7c/03/cd7c03a48d17c56c4fa7ffad61878f59.jpg">
+        <img src="https://i.pinimg.com/1200x/5b/ad/30/5bad30f447b6111dac5e7fe7eff4400f.jpg">
+    </div>
+    <div class="info-section">
+            <div class="info-header">
+                <h1>peugeot 208</h1>
+                <div class="price-tag">350 DH <small>/ Jour</small></div>
+            </div>
+            <div class="specs-list">
+                <div class="spec-item"><b>Moteur:</b> 1.5 BlueHDi</div>
+                <div class="spec-item"><b>Puissance:</b> 100 ch</div>
+                <div class="spec-item"><b>Transmission:</b> Manuelle 6 rapports</div>
+                <div class="spec-item"><b>Carburant:</b> Diesel</div>
+                <div class="spec-item"><b>Équipements:</b> i-Cockpit, Ecran tactile,LED </div>
+                <div class="spec-item"><b>Catégorie:</b> Citadine</div>
+            </div>
+    </div>
+    <div class="reserver">
+    <a href="reserver.html">
+        <button type="submit">Réserver</button>
+    </a>
+    </div>
+    </div>
+</body>
